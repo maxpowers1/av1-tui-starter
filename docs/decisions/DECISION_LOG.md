@@ -8,6 +8,7 @@ For full context, see the linked ADR or commit.
 | Date | Decision | ADR | Commit | Decided By |
 |------|----------|-----|--------|------------|
 | 2026-04-04 | Use dual-track decision recording (markdown ADRs + git trailers) | [ADR-0001](../adr/0001-use-dual-track-decision-recording.md) | — | human+claude-code |
+| 2026-04-04 | Choose Textual as the TUI framework | [ADR-0002](../adr/0002-choose-textual-as-tui-framework.md) | — | human+claude-code |
 
 ---
 
