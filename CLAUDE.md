@@ -10,7 +10,7 @@ for code decisions made during development.
 
 ## Tech Stack
 - Python 3.12+
-- TUI framework: (pending — see ADR-0002 when created)
+- TUI framework: **Textual** (see ADR-0002)
 - AV1 encoder: (pending — see ADR-0003 when created)
 - pytest (testing)
 
@@ -60,6 +60,7 @@ At the end of the experiment, we compare:
 | ADR | Title | Status | Date |
 |-----|-------|--------|------|
 | 0001 | Use dual-track decision recording | Accepted | 2026-04-04 |
+| 0002 | Choose Textual as TUI framework | Accepted | 2026-04-04 |
 
 ## Project Conventions
 - snake_case for Python files and functions
