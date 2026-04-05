@@ -6,6 +6,9 @@ Accepted
 ## Date
 2026-04-04
 
+## TL;DR
+Use Textual's reactive widget model (DirectoryTree, SelectionList, ProgressBar), CSS-based styling, and async-first design for subprocess handling.
+
 ## Context
 The av1-tui tool needs a terminal UI framework that supports three core
 interactions: file browser navigation, multi-select for choosing video files,

@@ -7,6 +7,10 @@ Proposed
 ## Date
 YYYY-MM-DD
 
+## TL;DR
+<!-- One sentence: what was decided and what it means for daily work.
+     This should match the Implication column in DECISION_LOG.md. -->
+
 ## Context
 <!-- What is the problem or situation that requires a decision?
      Include relevant constraints, requirements, and forces at play. -->

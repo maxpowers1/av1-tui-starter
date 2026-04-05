@@ -28,53 +28,35 @@ for code decisions made during development.
 - TUI and encoding logic are fully separated — the TUI is a skin
 - Every significant design choice gets recorded (this is the experiment)
 
-## Decision Tracking Protocol
+## Decision Tracking
+Decisions live in markdown ADR files (primary) with git trailers as audit trail
+(see ADR-0004, `docs/CONTEXT_GUIDE.md`). Use `/new-decision` to create an ADR.
 
-### When to record a decision
-Record an ADR when any of these are true:
-- Choosing between two or more viable approaches
-- Introducing a new dependency
-- Changing an existing pattern
-- Making a trade-off (performance vs readability, speed vs quality, etc.)
-- Deviating from a convention established in a previous ADR
-
-### Dual-track recording (THE EXPERIMENT)
-We maintain decisions in TWO places to compare them:
-
-1. **Markdown ADRs** → `docs/adr/NNNN-title.md` using the template in `docs/adr/TEMPLATE.md`
-2. **Git commit messages** → Structured commits using the format in `docs/decisions/COMMIT_CONVENTION.md`
-
-At the end of the experiment, we compare:
-- Which was easier to query/search?
-- Which had less friction to create?
-- Which stayed more accurate over time?
-- Which was more useful when resuming a session?
-
-### How to reference decisions
-- In code comments: `# See ADR-0003` or `# Decision: <short description>`
-- In CLAUDE.md updates: Link to the ADR number
-- In commits: Use the `decision:` trailer
-
-## Active Decisions
-<!-- This section is a living index. Update it as ADRs are created. -->
-| ADR | Title | Status | Date |
-|-----|-------|--------|------|
-| 0001 | Use dual-track decision recording | Accepted | 2026-04-04 |
-| 0002 | Choose Textual as TUI framework | Accepted | 2026-04-04 |
-| 0003 | Use ab-av1 as encoding backend | Accepted | 2026-04-04 |
+**Current decisions:** See `docs/decisions/DECISION_LOG.md` for the full index.
 
 ## Project Conventions
 - snake_case for Python files and functions
 - Type hints on all function signatures
 - Docstrings on public functions
 - Tests mirror source structure: `src/foo.py` → `tests/test_foo.py`
+- All subprocess calls use list-form args, never shell=True with interpolation
+- All file paths use `pathlib.Path`
+- Run `/qa` before committing any feature or refactor
+
+## Available Agents and Commands
+- `/handoff` — write a session handoff note before ending a session
+- `/new-decision` — create an ADR + commit with decision trailers
+- `/audit-decisions` — cross-reference ADRs, git trailers, and decision log
+- `/qa` — run the QA agent (tests, types, lint, encoding safety, ADR compliance)
+- `decision-reviewer` subagent — audits decision tracking for gaps
+- `qa` subagent — full QA sweep with structured report
 
 ## Context Budget
-Keep this file under 150 lines. If it grows beyond that, extract sections into
-files under `docs/` and reference them here. The goal is to stay within the
-"cheap to load" zone for Claude Code's context window.
+Keep this file under 100 lines. Extract details into `docs/` and reference them
+here. See `docs/CONTEXT_GUIDE.md` for the full context-layer model.
 
 ## Files to Read on Session Start
-- `docs/adr/` — scan for any ADRs marked "Proposed" that need resolution
-- `docs/decisions/DECISION_LOG.md` — quick-reference log of all decisions
-- `MEMORY.md` — auto-captured learnings (if it exists)
+- `docs/HANDOFF.md` — previous session's handoff note (check if anything is in progress)
+- `docs/decisions/DECISION_LOG.md` — scan for decision implications (L2 cache)
+- Only open individual ADRs when working on code they affect (L3 cache)
+- `MEMORY.md` — auto-loaded by Claude Code (L1 cache)

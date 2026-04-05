@@ -6,6 +6,9 @@ Accepted
 ## Date
 2026-04-04
 
+## TL;DR
+Shell out to `ab-av1 auto-encode` for VMAF-targeted quality; parse its progress output; users must install ab-av1 + compatible ffmpeg separately.
+
 ## Context
 The av1-tui tool needs to convert video files to AV1 format. A key user
 requirement is ensuring near-imperceptible quality loss during conversion,

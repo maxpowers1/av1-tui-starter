@@ -1,10 +1,13 @@
 # ADR-0001: Use Dual-Track Decision Recording (Markdown + Git Trailers)
 
 ## Status
-Accepted
+Superseded by ADR-0004
 
 ## Date
 2026-04-04
+
+## TL;DR
+Every decision needs both an ADR file and a `decision:` commit trailer; use `/new-decision` to create both.
 
 ## Context
 We're building an AV1 encoding TUI and using it as a proving ground to evaluate
