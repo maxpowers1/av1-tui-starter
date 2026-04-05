@@ -55,6 +55,13 @@ class FileBrowserScreen(Screen):
         height: 100%;
     }
 
+    #instructions {
+        padding: 1;
+        background: $surface;
+        color: $text-muted;
+        dock: top;
+    }
+
     #selection-panel {
         width: 1fr;
         height: 100%;
@@ -69,6 +76,11 @@ class FileBrowserScreen(Screen):
 
     #selection-list {
         height: 1fr;
+    }
+
+    #selection-empty {
+        color: $text-disabled;
+        padding: 1 0;
     }
 
     #selection-count {
@@ -88,13 +100,26 @@ class FileBrowserScreen(Screen):
         """Return the list of currently selected file paths."""
         return list(self._selected.keys())
 
+    INSTRUCTIONS = (
+        "Navigate the tree to find video files. "
+        "Press [b]Space[/b] to toggle a file, "
+        "[b]A[/b] to select all visible, "
+        "[b]C[/b] to clear selection, "
+        "[b]Enter[/b] to confirm."
+    )
+
     def compose(self) -> ComposeResult:
         yield Header()
+        yield Static(self.INSTRUCTIONS, id="instructions", markup=True)
         with Horizontal(id="browser-layout"):
             with Vertical(id="tree-panel"):
                 yield VideoDirectoryTree(self._start_path)
             with Vertical(id="selection-panel"):
                 yield Static("Selected Files", id="selection-header")
+                yield Static(
+                    "No files selected yet",
+                    id="selection-empty",
+                )
                 yield ListView(id="selection-list")
                 yield Label("0 files selected", id="selection-count")
         yield Footer()
@@ -117,18 +142,23 @@ class FileBrowserScreen(Screen):
     def action_select_all(self) -> None:
         """Select all visible video files in the currently expanded tree."""
         tree = self.query_one(VideoDirectoryTree)
-        for node in tree._tree_nodes.values():
+        # Walk only the visible (expanded) portion of the tree
+        stack = [tree.root]
+        while stack:
+            node = stack.pop()
             if node.data and hasattr(node.data, "path"):
                 path = node.data.path
                 if is_video_file(path) and path not in self._selected:
                     self._add_to_selection(path)
+            if node.is_expanded:
+                stack.extend(node.children)
 
     def action_clear_selection(self) -> None:
         """Clear all selected files."""
         selection_list = self.query_one("#selection-list", ListView)
         selection_list.clear()
         self._selected.clear()
-        self._update_count()
+        self._update_status()
 
     def action_confirm(self) -> None:
         """Confirm the selection and proceed."""
@@ -143,18 +173,24 @@ class FileBrowserScreen(Screen):
 
     def _add_to_selection(self, path: Path) -> None:
         selection_list = self.query_one("#selection-list", ListView)
-        item = ListItem(Label(path.name))
+        try:
+            display = str(path.relative_to(self._start_path))
+        except ValueError:
+            display = path.name
+        item = ListItem(Label(display))
         self._selected[path] = item
         selection_list.append(item)
-        self._update_count()
+        self._update_status()
 
     def _remove_from_selection(self, path: Path) -> None:
         item = self._selected.pop(path, None)
         if item is not None:
             item.remove()
-        self._update_count()
+        self._update_status()
 
-    def _update_count(self) -> None:
+    def _update_status(self) -> None:
         count = len(self._selected)
         label = self.query_one("#selection-count", Label)
         label.update(f"{count} file{'s' if count != 1 else ''} selected")
+        empty_hint = self.query_one("#selection-empty", Static)
+        empty_hint.display = count == 0
