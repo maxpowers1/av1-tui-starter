@@ -42,7 +42,7 @@ class FileBrowserScreen(Screen):
         Binding("a", "select_all", "Select all visible"),
         Binding("c", "clear_selection", "Clear selection"),
         Binding("enter", "confirm", "Confirm"),
-        Binding("q", "quit", "Quit"),
+        Binding("q", "app.quit", "Quit"),
     ]
 
     CSS = """
