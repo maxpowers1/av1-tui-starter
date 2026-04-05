@@ -11,7 +11,7 @@ for code decisions made during development.
 ## Tech Stack
 - Python 3.12+
 - TUI framework: **Textual** (see ADR-0002)
-- AV1 encoder: (pending — see ADR-0003 when created)
+- AV1 encoder: **ab-av1** (see ADR-0003)
 - pytest (testing)
 
 ## What the Tool Does
@@ -61,6 +61,7 @@ At the end of the experiment, we compare:
 |-----|-------|--------|------|
 | 0001 | Use dual-track decision recording | Accepted | 2026-04-04 |
 | 0002 | Choose Textual as TUI framework | Accepted | 2026-04-04 |
+| 0003 | Use ab-av1 as encoding backend | Accepted | 2026-04-04 |
 
 ## Project Conventions
 - snake_case for Python files and functions

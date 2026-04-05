@@ -9,6 +9,7 @@ For full context, see the linked ADR or commit.
 |------|----------|-----|--------|------------|
 | 2026-04-04 | Use dual-track decision recording (markdown ADRs + git trailers) | [ADR-0001](../adr/0001-use-dual-track-decision-recording.md) | — | human+claude-code |
 | 2026-04-04 | Choose Textual as the TUI framework | [ADR-0002](../adr/0002-choose-textual-as-tui-framework.md) | — | human+claude-code |
+| 2026-04-04 | Use ab-av1 as the AV1 encoding backend | [ADR-0003](../adr/0003-use-ab-av1-as-encoding-backend.md) | — | human+claude-code |
 
 ---
 
