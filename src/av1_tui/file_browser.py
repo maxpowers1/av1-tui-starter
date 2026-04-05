@@ -10,13 +10,34 @@ from textual.app import ComposeResult
 from textual.binding import Binding
 from textual.containers import Horizontal, Vertical
 from textual.screen import Screen
-from textual.widgets import DirectoryTree, Footer, Header, Label, ListView, ListItem, Static
+from textual.widgets import (
+    DirectoryTree,
+    Footer,
+    Header,
+    Label,
+    ListView,
+    ListItem,
+    Static,
+)
 
 
-VIDEO_EXTENSIONS: frozenset[str] = frozenset({
-    ".mp4", ".mkv", ".avi", ".mov", ".wmv", ".flv", ".webm",
-    ".m4v", ".mpg", ".mpeg", ".ts", ".vob", ".3gp",
-})
+VIDEO_EXTENSIONS: frozenset[str] = frozenset(
+    {
+        ".mp4",
+        ".mkv",
+        ".avi",
+        ".mov",
+        ".wmv",
+        ".flv",
+        ".webm",
+        ".m4v",
+        ".mpg",
+        ".mpeg",
+        ".ts",
+        ".vob",
+        ".3gp",
+    }
+)
 
 
 def is_video_file(path: Path) -> bool:
@@ -28,10 +49,7 @@ class VideoDirectoryTree(DirectoryTree):
     """A directory tree that only shows directories and video files."""
 
     def filter_paths(self, paths: Iterable[Path]) -> Iterable[Path]:
-        return [
-            path for path in paths
-            if path.is_dir() or is_video_file(path)
-        ]
+        return [path for path in paths if path.is_dir() or is_video_file(path)]
 
 
 class FileBrowserScreen(Screen):

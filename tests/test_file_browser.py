@@ -2,7 +2,6 @@
 
 from pathlib import Path
 
-import pytest
 
 from av1_tui.file_browser import VIDEO_EXTENSIONS, is_video_file, VideoDirectoryTree
 

@@ -20,11 +20,16 @@ class TestBuildCommand:
         assert cmd == [
             "ab-av1",
             "auto-encode",
-            "-i", "/tmp/input.mkv",
-            "-o", "/tmp/output.mkv",
-            "--encoder", "libsvtav1",
-            "--preset", "6",
-            "--min-vmaf", "95.0",
+            "-i",
+            "/tmp/input.mkv",
+            "-o",
+            "/tmp/output.mkv",
+            "--encoder",
+            "libsvtav1",
+            "--preset",
+            "6",
+            "--min-vmaf",
+            "95.0",
         ]
 
     def test_custom_options(self) -> None:

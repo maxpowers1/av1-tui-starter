@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import asyncio
 import shutil
-from dataclasses import dataclass, field
+from dataclasses import dataclass
 from pathlib import Path
 
 
@@ -50,11 +50,16 @@ def build_command(job: EncodeJob) -> list[str]:
     return [
         "ab-av1",
         "auto-encode",
-        "-i", str(job.input_path),
-        "-o", str(job.output_path),
-        "--encoder", job.encoder,
-        "--preset", str(job.preset),
-        "--min-vmaf", str(job.min_vmaf),
+        "-i",
+        str(job.input_path),
+        "-o",
+        str(job.output_path),
+        "--encoder",
+        job.encoder,
+        "--preset",
+        str(job.preset),
+        "--min-vmaf",
+        str(job.min_vmaf),
     ]
 
 

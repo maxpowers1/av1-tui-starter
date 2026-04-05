@@ -2,17 +2,14 @@
 
 ## What This Is
 A command-line TUI tool that lets you browse a file system, select video files,
-and batch-convert them to AV1. This is also a proving ground for evaluating
-decision-tracking patterns in agentic coding workflows.
-
-We are explicitly testing: **markdown files vs git log** as the source of truth
-for code decisions made during development.
+and batch-convert them to AV1. Also a proving ground for an agentic coding
+framework — see `docs/CONTEXT_GUIDE.md` for the context-layer model.
 
 ## Tech Stack
 - Python 3.12+
 - TUI framework: **Textual** (see ADR-0002)
 - AV1 encoder: **ab-av1** (see ADR-0003)
-- pytest (testing)
+- pytest, ruff, mypy (dev tools)
 
 ## What the Tool Does
 1. User launches the TUI
@@ -26,7 +23,7 @@ for code decisions made during development.
 - Single-file entry point, modular internals
 - Encoding runs as subprocess (wrapping ffmpeg or standalone encoder)
 - TUI and encoding logic are fully separated — the TUI is a skin
-- Every significant design choice gets recorded (this is the experiment)
+- Every significant design choice gets an ADR (see Decision Tracking)
 
 ## Decision Tracking
 Decisions live in markdown ADR files (primary) with git trailers as audit trail
@@ -42,6 +39,7 @@ Decisions live in markdown ADR files (primary) with git trailers as audit trail
 - All subprocess calls use list-form args, never shell=True with interpolation
 - All file paths use `pathlib.Path`
 - Run `/qa` before committing any feature or refactor
+- Pre-commit hook enforces ruff lint + format (setup: `git config core.hooksPath .githooks`)
 
 ## Available Agents and Commands
 - `/handoff` — write a session handoff note before ending a session
