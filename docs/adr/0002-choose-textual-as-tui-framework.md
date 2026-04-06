@@ -86,8 +86,8 @@ cost is acceptable for a desktop CLI tool that already depends on ffmpeg.
 ## Related
 - Related ADRs: ADR-0001 (dual-track decision recording)
 - Relevant commits: (will be filled by the commit recording this decision)
-- Discussion: Evaluated in Claude Code session, 2026-04-04
+- Discussion: Evaluated in agentic coding session, 2026-04-04
 
 ## Provenance
-- **Decided by:** human+claude-code
-- **Session context:** User requested framework evaluation for file browsing, multi-select, and progress bar requirements. Claude Code provided comparative analysis; user confirmed Textual.
+- **Decided by:** human+agent
+- **Session context:** User requested framework evaluation for file browsing, multi-select, and progress bar requirements. Agent provided comparative analysis; user confirmed Textual.

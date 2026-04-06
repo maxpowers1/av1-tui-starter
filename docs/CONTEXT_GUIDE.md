@@ -62,7 +62,7 @@ Ask yourself: **who needs this, and when?**
 | A decision summary + daily-work implication | DECISION_LOG.md (L2) | "Textual as TUI → use reactive model" |
 | What the last session left behind | HANDOFF.md (L2) | "File browser done, encoding screen in progress" |
 | Full decision rationale with options | ADR file (L3) | "Why Textual over urwid and curses" |
-| A historical fact about when/who | Git trailers (L4) | "decided-by: human+claude-code" |
+| A historical fact about when/who | Git trailers (L4) | "decided-by: human+agent" |
 | A pointer from code to its rationale | Code comment (L5) | `# See ADR-0002` |
 
 ## How to Use This When Looking for Information
@@ -91,12 +91,31 @@ Ask yourself: **who needs this, and when?**
   Textual → reactive model, DirectoryTree widget, CSS-based styling" tells
   an agent what it actually means for implementation.
 
+## Tool Mapping
+
+This framework is tool-agnostic. The concepts map to any agentic coding tool:
+
+| Framework concept | Claude Code | Cursor | Generic |
+|-------------------|-------------|--------|---------|
+| Project context file (L0) | `CLAUDE.md` | `.cursorrules` | Tool-specific root config |
+| Agent definitions | `.claude/agents/` | Custom rules | Tool-specific agent config |
+| Slash commands | `.claude/commands/` | Custom rules | Tool-specific command config |
+| Memory / learnings | `MEMORY.md` (auto-loaded) | Notepad | Persistent scratchpad |
+| Model weight: lightweight | `sonnet` | Default model | Fast, cheap, good for focused tasks |
+| Model weight: heavy reasoning | `opus` | Advanced model | Expensive, good for architecture |
+
+The decision tracking system (ADRs, DECISION_LOG, git trailers), the cache
+hierarchy, the session lifecycle, and the QA/audit agents are fully
+tool-agnostic. Only the config file locations and model names need remapping.
+
 ## For Template Users
 
 When adapting this framework for a new project:
 
 1. Copy this file as-is — the layers are project-agnostic.
-2. Customize CLAUDE.md for your project's identity and conventions.
-3. Populate DECISION_LOG.md with your first decisions.
-4. Write ADRs using `docs/adr/TEMPLATE.md` for non-trivial choices.
-5. Let memory accumulate naturally — don't pre-populate it.
+2. Rename/move the project context file if your tool uses a different name.
+3. Customize the project context file for your project's identity and conventions.
+4. Remap agent and command definitions to your tool's config format.
+5. Populate DECISION_LOG.md with your first decisions.
+6. Write ADRs using `docs/adr/TEMPLATE.md` for non-trivial choices.
+7. Let memory accumulate naturally — don't pre-populate it.

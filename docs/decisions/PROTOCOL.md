@@ -45,8 +45,8 @@ The `/new-decision` command automates both tracks:
 
 Every decision records who (or what) made it:
 - `human` — human decided, agent just transcribed
-- `claude-code` — agent decided, human approved
-- `human+claude-code` — collaborative decision
+- `agent` — agent decided, human approved
+- `human+agent` — collaborative decision
 
 This is captured in both the ADR's Provenance section and the commit's
 `decided-by:` trailer.

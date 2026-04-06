@@ -25,12 +25,12 @@ These apply to any project using this agentic coding framework.
 |------|-----------|
 | **Cache hierarchy** | The organizing principle of this framework. Information is stored in layers (L0–L5) ordered by access cost, like CPU cache. Each layer contains enough to decide whether to go deeper. See `docs/CONTEXT_GUIDE.md`. |
 | **Session handoff** | A note written at the end of a work session (`/handoff`) capturing what was done, what's in progress, and what the next session needs to know. Stored in `docs/HANDOFF.md`, overwritten each time. |
-| **Provenance** | A record of who or what made a decision. One of: `human` (human decided, agent transcribed), `claude-code` (agent decided, human approved), or `human+claude-code` (collaborative). Captured in ADR files and git trailers. |
+| **Provenance** | A record of who or what made a decision. One of: `human` (human decided, agent transcribed), `agent` (agent decided, human approved), or `human+agent` (collaborative). Captured in ADR files and git trailers. |
 | **Implication** | A column in DECISION_LOG.md describing what a decision means for daily coding work. The key that lets agents skip reading the full ADR 80% of the time. |
 | **Git trailers** | Machine-parseable key-value metadata in git commit messages. Used as an audit trail for decisions. Example: `decision: Use Textual as TUI framework`. Queryable via `git log --grep`. |
 | **Architecture plan** | A structured sketch of an approach created before implementation via `/plan`. Checks against existing ADRs, identifies files to touch, flags decisions that need recording, and estimates scope. Not persisted — lives in the session. |
-| **Slash command** | A user-invoked operation in Claude Code (e.g., `/plan`, `/qa`, `/new-decision`, `/handoff`). Defined in `.claude/commands/`. Runs in the current session's context. |
-| **Subagent** | A focused worker agent spun up by Claude Code to handle a specific task (e.g., QA checks, decision auditing). Defined in `.claude/agents/`. Runs in its own context with limited tools. |
+| **Slash command** | A user-invoked operation in the agentic coding tool (e.g., `/plan`, `/qa`, `/new-decision`, `/handoff`). Defined in the tool's command directory. Runs in the current session's context. |
+| **Subagent** | A focused worker agent spun up to handle a specific task (e.g., QA checks, decision auditing). Defined in the tool's agent directory. Runs in its own context with limited tools. |
 | **Pre-commit hook** | A script that runs automatically before every `git commit`. In this framework, it enforces fast lint and format checks. Lives in `.githooks/`. |
 | **Framework checks** | QA checks that are reusable across any project: tests pass, types check, lint clean, ADR compliance. Contrast with domain checks. |
 | **Domain checks** | QA checks specific to a project's problem space (e.g., encoding safety for a video tool, API auth for a web service). Customized per project in the QA agent. |

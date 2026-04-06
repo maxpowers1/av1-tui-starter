@@ -18,7 +18,7 @@ what we did; you were here.
 # Session Handoff
 
 **Updated:** [today's date]
-**By:** [human, claude-code, or human+claude-code]
+**By:** [human, agent, or human+agent]
 
 ## Completed
 - (what was finished — be specific about files and features)

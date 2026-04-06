@@ -16,7 +16,7 @@ decision: <decision-summary>
 alternatives: <what-else-was-considered>
 rationale: <why-this-choice>
 adr: <ADR-number-if-one-exists>
-decided-by: <human|claude-code|human+claude-code>
+decided-by: <human|agent|human+agent>
 ```
 
 ### Types
@@ -54,7 +54,7 @@ decision: Use a simple GET /health over a more complex readiness/liveness split
 alternatives: Separate /ready and /live endpoints (k8s style)
 rationale: Toy app doesn't need k8s-style probes; one endpoint is sufficient
 adr: ADR-0002
-decided-by: claude-code
+decided-by: agent
 ```
 
 ### A pure decision commit (no code changes)
@@ -68,7 +68,7 @@ decision: Use SQLite over PostgreSQL for zero-infrastructure simplicity
 alternatives: PostgreSQL, in-memory dicts
 rationale: Focus is on testing decision workflows, not database patterns
 adr: ADR-0001
-decided-by: human+claude-code
+decided-by: human+agent
 ```
 
 ## Querying Decisions from Git
@@ -90,7 +90,7 @@ git log --grep='decision:' --format='%h | %(trailers:key=decision,valueonly)'
 
 ### Decisions by a specific actor
 ```bash
-git log --grep='decided-by: claude-code' --oneline
+git log --grep='decided-by: agent' --oneline
 ```
 
 ### Decisions in a date range
@@ -108,5 +108,5 @@ At the end of the experiment, answer these questions:
 3. **Friction:** Which felt like less overhead to create — an ADR file or a
    well-structured commit message?
 4. **Drift:** Did one method stay more up-to-date than the other?
-5. **Agent compatibility:** Could Claude Code use one more effectively than
+5. **Agent compatibility:** Could the coding agent use one more effectively than
    the other when resuming sessions?

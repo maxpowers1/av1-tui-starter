@@ -2,18 +2,18 @@
 
 ## Hypothesis
 Markdown ADR files will be more useful for *resuming context* (starting a new
-Claude Code session), while git commit trailers will be more useful for
+agent session), while git commit trailers will be more useful for
 *querying history* (when did we decide X, who decided it).
 
 ## Evaluation Criteria
 
 ### 1. Session Resume Quality
-When Claude Code starts a new session and reads CLAUDE.md + ADRs, how quickly
-does it get up to speed? Compare this with sessions where it's told to read
+When the agent starts a new session and reads the project context file + ADRs,
+how quickly does it get up to speed? Compare this with sessions where it's told to read
 git log instead.
 
 **Observations:**
-- 2026-04-04: A second Claude Code instance (acting as framework advisor) read
+- 2026-04-04: A second agent instance (acting as framework advisor) read
   CLAUDE.md → ADRs → DECISION_LOG to get up to speed. Never queried git log.
   Markdown was the natural entry point for session resume.
 
@@ -27,7 +27,7 @@ the answer faster?
   for discovery — you'd have to already know a decision exists to grep for it.
 
 ### 3. Creation Friction
-Which method do you (or Claude Code) actually use consistently? Does one
+Which method do you (or the agent) actually use consistently? Does one
 get skipped when you're in flow?
 
 **Observations:**
@@ -45,11 +45,11 @@ Do the ADR files drift from reality? Do commit messages get lazy?
   medium is better for the "why."
 
 ### 5. Agent Effectiveness
-Can Claude Code *create* good ADRs? Can it write good decision-trailers
+Can the agent *create* good ADRs? Can it write good decision-trailers
 in commits? Which does it do more reliably?
 
 **Observations:**
-- 2026-04-04: When a Claude Code instance designed a context system for agents,
+- 2026-04-04: When an agent instance designed a context system for agents,
   it organically placed markdown at accessible layers (L2-L3) and git at the
   audit layer (L4). The agent's tool affordances favor file reads over git
   queries — file-based storage is the path of least resistance.
@@ -98,8 +98,8 @@ for the full model.
 
 1. **Friction kills.** Even with automation (`/new-decision`), the git side
    got skipped. Two artifacts per decision is one too many when you're in flow.
-2. **Agent affordances favor files.** Claude Code reads files naturally and
-   queries git reactively. A system designed for agents will put files first.
+2. **Agent affordances favor files.** Coding agents read files naturally and
+   query git reactively. A system designed for agents will put files first.
 3. **Mutability matters for "why."** Understanding of a decision sharpens over
    time. An immutable medium (commit messages) can't accommodate that.
 

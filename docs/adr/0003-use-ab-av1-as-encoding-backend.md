@@ -95,5 +95,5 @@ and "TUI and encoding logic are fully separated."
 - Discussion: https://github.com/alexheretic/ab-av1
 
 ## Provenance
-- **Decided by:** human+claude-code
-- **Session context:** User chose ab-av1 for its VMAF auto-crf feature ensuring near-imperceptible quality loss. Claude confirmed architectural fit and documented alternatives.
+- **Decided by:** human+agent
+- **Session context:** User chose ab-av1 for its VMAF auto-crf feature ensuring near-imperceptible quality loss. Agent confirmed architectural fit and documented alternatives.

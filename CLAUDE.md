@@ -60,4 +60,4 @@ here. See `docs/CONTEXT_GUIDE.md` for the full context-layer model.
 - `docs/HANDOFF.md` — previous session's handoff note (check if anything is in progress)
 - `docs/decisions/DECISION_LOG.md` — scan for decision implications (L2 cache)
 - Only open individual ADRs when working on code they affect (L3 cache)
-- `MEMORY.md` — auto-loaded by Claude Code (L1 cache)
+- `MEMORY.md` — auto-loaded by the agent (L1 cache)

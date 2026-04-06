@@ -50,5 +50,5 @@ YYYY-MM-DD
 
 ## Provenance
 <!-- WHO or WHAT made this decision? This is critical for agentic systems. -->
-- **Decided by:** human | claude-code | human+claude-code
+- **Decided by:** human | agent | human+agent
 - **Session context:** (optional — paste the prompt or context that led here)

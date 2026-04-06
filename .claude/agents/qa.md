@@ -110,5 +110,5 @@ corresponding ADR, flag it. Unrecorded decisions are a QA finding.
 ## Important
 - Be specific. "Tests fail" is useless. "test_encode_single_file fails with
   FileNotFoundError because ffmpeg is not on PATH" is actionable.
-- Don't fix things yourself. Report them. The human or the main Claude Code
+- Don't fix things yourself. Report them. The human or the main agent
   session decides what to do.

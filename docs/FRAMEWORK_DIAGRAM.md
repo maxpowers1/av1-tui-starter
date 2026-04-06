@@ -127,13 +127,13 @@ flowchart TB
     end
 
     subgraph AGENTS["Subagents — Focused Workers"]
-        AGENT_QA["qa agent (sonnet)
+        AGENT_QA["qa agent (lightweight)
         Tests, types, lint
         Domain checks, ADR compliance"]
-        AGENT_DR["decision-reviewer agent (sonnet)
+        AGENT_DR["decision-reviewer (lightweight)
         Finds unrecorded decisions
         Checks ADR/log sync"]
-        AGENT_FH["framework-health agent (sonnet)
+        AGENT_FH["framework-health (lightweight)
         Context budget, log quality
         Structural integrity"]
     end
@@ -179,7 +179,7 @@ What happens when you run `/new-decision`.
 ```mermaid
 sequenceDiagram
     participant H as Human
-    participant CC as Claude Code
+    participant CC as Coding Agent
     participant FS as Filesystem
     participant G as Git
 

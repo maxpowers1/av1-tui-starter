@@ -11,7 +11,7 @@ Every decision needs both an ADR file and a `decision:` commit trailer; use `/ne
 
 ## Context
 We're building an AV1 encoding TUI and using it as a proving ground to evaluate
-how agentic coding tools (Claude Code, etc.) should track the decisions they
+how agentic coding tools should track the decisions they
 make during development.
 
 The core question: should decisions live in standalone markdown files, in git
@@ -39,7 +39,7 @@ making actual technical decisions about the app.
   redundancy, forces us to articulate decisions twice (which may improve clarity)
 - **Cons:** Double the work, risk of the two sources drifting apart, more process
   overhead for a small project
-- **Effort:** Medium — mitigated by Claude Code slash commands that create both
+- **Effort:** Medium — mitigated by slash commands that create both
 
 ## Decision
 Use dual-track (Option C) because the entire point of this project is to
@@ -72,5 +72,5 @@ and record that as a new ADR that supersedes this one.
 - `.claude/commands/new-decision.md` — slash command that creates both artifacts
 
 ## Provenance
-- **Decided by:** human+claude-code
+- **Decided by:** human+agent
 - **Session context:** Initial project setup, evaluating decision-tracking patterns

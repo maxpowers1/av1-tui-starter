@@ -19,7 +19,7 @@ Key findings (full details in `docs/decisions/EXPERIMENT_NOTES.md`):
 
 1. **Git trailers were skipped on all 3 decisions.** Even with `/new-decision`
    automation, the Commit column in DECISION_LOG is `—` across the board.
-2. **A Claude Code instance designing a context system for agents organically
+2. **An agent instance designing a context system for agents organically
    placed markdown at accessible layers and git at the bottom.** Agent tool
    affordances favor file reads over git queries.
 3. **Markdown is mutable; commits are not.** Decisions were updated in-place
@@ -93,8 +93,8 @@ anti-patterns.
 - Implements: The cache hierarchy model proposed during framework design
 
 ## Provenance
-- **Decided by:** human+claude-code
-- **Session context:** A second Claude Code instance was brought in to evaluate
+- **Decided by:** human+agent
+- **Session context:** A second agent instance was brought in to evaluate
   the framework's meta-design. While restructuring the context system, the
   agent naturally built a file-first cache hierarchy, revealing that the
   dual-track experiment had an outcome. Human confirmed and directed the
