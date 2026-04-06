@@ -1,0 +1,31 @@
+# {{ project_name }}
+
+{{ project_description }}
+
+## Getting Started
+
+1. Clone this repo
+{% if archetype == 'python' -%}
+2. Install dependencies: `uv sync`
+{% elif archetype == 'dotnet' -%}
+2. Restore packages: `dotnet restore`
+{% elif archetype == 'generic' -%}
+2. Install dependencies (see your package manager docs)
+{% endif -%}
+3. Set up the pre-commit hook: `git config core.hooksPath .githooks`
+4. Open the project with your agentic coding tool
+5. Start building — use `/plan` before implementing, `/new-decision` for choices
+
+## Framework
+
+This project uses the [Agentic Coding Framework](https://github.com/your-org/agentic-framework)
+(v{{ framework_version }}) for decision tracking, session continuity, and quality gates.
+
+Key commands:
+- `/plan` — architecture plan before implementing
+- `/new-decision` — record a design choice as an ADR
+- `/qa` — run quality checks before committing
+- `/handoff` — write a session handoff note
+- `/health` — check framework integrity
+
+See `docs/CONTEXT_GUIDE.md` for the full context-layer model.

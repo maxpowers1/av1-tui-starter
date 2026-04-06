@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+# Pre-commit hook: fast checks only (seconds, not minutes).
+# Heavy checks (tests, type checking, ADR compliance) live in /qa.
+#
+# Setup: git config core.hooksPath .githooks
+
+set -e
+{% if archetype == 'python' %}
+# Resolve uv — git hooks inherit a minimal PATH
+UV=$(command -v uv 2>/dev/null \
+    || echo "$HOME/.local/bin/uv" \
+    || echo "$HOME/.cargo/bin/uv")
+if [ ! -x "$UV" ]; then
+    echo "pre-commit: uv not found. Install it or skip with --no-verify."
+    exit 1
+fi
+
+# Find Python files that are staged for commit
+STAGED_PY=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$' || true)
+
+if [ -z "$STAGED_PY" ]; then
+    exit 0
+fi
+
+echo "pre-commit: checking staged Python files..."
+
+# Lint
+if ! $UV run ruff check $STAGED_PY; then
+    echo ""
+    echo "pre-commit: ruff check failed. Fix lint errors or run '$UV run ruff check --fix'."
+    exit 1
+fi
+
+# Format
+if ! $UV run ruff format --check $STAGED_PY; then
+    echo ""
+    echo "pre-commit: ruff format failed. Run '$UV run ruff format' to fix."
+    exit 1
+fi
+{% elif archetype == 'dotnet' %}
+# Find C# files that are staged for commit
+STAGED_CS=$(git diff --cached --name-only --diff-filter=ACM | grep '\.cs$' || true)
+
+if [ -z "$STAGED_CS" ]; then
+    exit 0
+fi
+
+echo "pre-commit: checking staged C# files..."
+
+if ! dotnet format --verify-no-changes --include $STAGED_CS 2>/dev/null; then
+    echo ""
+    echo "pre-commit: dotnet format failed. Run 'dotnet format' to fix."
+    exit 1
+fi
+{% elif archetype == 'generic' %}
+# Add your language-specific lint checks here.
+# Example for staged files:
+#
+# STAGED=$(git diff --cached --name-only --diff-filter=ACM | grep '\.ext$' || true)
+# if [ -z "$STAGED" ]; then exit 0; fi
+# your-linter $STAGED
+
+echo "pre-commit: no language-specific checks configured (generic archetype)."
+echo "pre-commit: edit .githooks/pre-commit to add checks for your language."
+exit 0
+{% endif %}
+echo "pre-commit: passed."

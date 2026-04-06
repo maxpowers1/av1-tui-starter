@@ -1,0 +1,69 @@
+# Agentic Coding Framework — Copier Template
+# https://copier.readthedocs.io/
+
+_min_copier_version: "9.0.0"
+_subdirectory: project
+
+# ─── Prompts ───────────────────────────────────────────────
+
+project_name:
+  type: str
+  help: "Project name (e.g., my-cool-app)"
+
+project_description:
+  type: str
+  help: "One-line description of what the project does"
+
+author:
+  type: str
+  help: "Author name"
+  default: ""
+
+archetype:
+  type: str
+  help: "Project type — determines conventions, QA checks, and pre-commit hooks"
+  choices:
+    Python: python
+    .NET: dotnet
+    Generic: generic
+  default: python
+
+# ─── Python-specific prompts ──────────────────────────────
+
+python_version:
+  type: str
+  help: "Minimum Python version"
+  default: "3.12"
+  when: "{{ archetype == 'python' }}"
+
+python_package_name:
+  type: str
+  help: "Python package name (snake_case)"
+  default: "{{ project_name | lower | replace('-', '_') | replace(' ', '_') }}"
+  when: "{{ archetype == 'python' }}"
+
+# ─── .NET-specific prompts ────────────────────────────────
+
+dotnet_version:
+  type: str
+  help: "Target .NET version"
+  default: "8.0"
+  when: "{{ archetype == 'dotnet' }}"
+
+# ─── Framework metadata ───────────────────────────────────
+
+framework_version:
+  type: str
+  default: "0.1.0"
+  help: "Framework version (do not change unless upgrading)"
+_answers_file: ".framework-answers.yml"
+
+# ─── Post-generation tasks ─────────────────────────────────
+
+_tasks:
+  - "chmod +x .githooks/pre-commit"
+  - "git init"
+  - "git config core.hooksPath .githooks"
+  - "git add ."
+  - >-
+    git commit -m "Initial project from agentic-coding-framework v{{ framework_version }}"

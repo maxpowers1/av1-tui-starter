@@ -1,0 +1,68 @@
+# Project: {{ project_name }}
+
+## What This Is
+{{ project_description }}
+
+## Tech Stack
+{% if archetype == 'python' -%}
+- Python {{ python_version }}+
+- pytest, ruff, mypy (dev tools)
+{% elif archetype == 'dotnet' -%}
+- .NET {{ dotnet_version }}
+- xUnit (testing)
+{% elif archetype == 'generic' -%}
+- (fill in your tech stack)
+{% endif %}
+
+## What the Tool Does
+1. (describe the primary workflow)
+
+## Architecture Principles
+- (add your project's architectural principles here)
+- Every significant design choice gets an ADR (see Decision Tracking)
+
+## Decision Tracking
+Decisions live in markdown ADR files (primary) with git trailers as audit trail
+(see `docs/CONTEXT_GUIDE.md`). Use `/new-decision` to create an ADR.
+
+**Current decisions:** See `docs/decisions/DECISION_LOG.md` for the full index.
+
+## Project Conventions
+{% if archetype == 'python' -%}
+- snake_case for Python files and functions
+- Type hints on all function signatures
+- Docstrings on public functions
+- Tests mirror source structure: `src/foo.py` → `tests/test_foo.py`
+- All subprocess calls use list-form args, never shell=True with interpolation
+- All file paths use `pathlib.Path`
+{% elif archetype == 'dotnet' -%}
+- PascalCase for classes, methods, and properties
+- camelCase for local variables and parameters
+- XML doc comments on public APIs
+- Tests mirror source structure: `Foo.cs` → `FooTests.cs`
+{% elif archetype == 'generic' -%}
+- (add your project's conventions here)
+{% endif -%}
+- Run `/qa` before committing any feature or refactor
+- Pre-commit hook enforces lint + format (setup: `git config core.hooksPath .githooks`)
+
+## Available Agents and Commands
+- `/plan` — sketch an architecture plan before implementing (checks against existing ADRs)
+- `/handoff` — write a session handoff note before ending a session
+- `/new-decision` — create an ADR + commit with decision trailers
+- `/audit-decisions` — cross-reference ADRs and decision log for gaps
+- `/qa` — run the QA agent (tests, types, lint, domain checks, ADR compliance)
+- `/health` — check the framework itself (context budget, decision log quality, structural integrity)
+- `decision-reviewer` subagent — audits decision tracking for gaps
+- `qa` subagent — full QA sweep with structured report
+- `framework-health` subagent — framework maintenance audit
+
+## Context Budget
+Keep this file under 100 lines. Extract details into `docs/` and reference them
+here. See `docs/CONTEXT_GUIDE.md` for the full context-layer model.
+
+## Files to Read on Session Start
+- `docs/HANDOFF.md` — previous session's handoff note (check if anything is in progress)
+- `docs/decisions/DECISION_LOG.md` — scan for decision implications (L2 cache)
+- Only open individual ADRs when working on code they affect (L3 cache)
+- `MEMORY.md` — auto-loaded by the agent (L1 cache)

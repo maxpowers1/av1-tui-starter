@@ -1,0 +1,26 @@
+# Decision Log
+
+The "at a glance" index for all decisions. This is Layer 2 in the context
+hierarchy (see `docs/CONTEXT_GUIDE.md`) — read this instead of opening every
+ADR. The **Implication** column tells you what a decision means for daily work.
+
+| Date | Decision | Implication | ADR | Commit | Decided By |
+|------|----------|-------------|-----|--------|------------|
+| (use /new-decision to add rows) | | | | | |
+
+---
+
+## How to use this log
+
+**For agents:** Read this file at session start (L2 cache). The Implication
+column should answer most questions. Only open the linked ADR (L3) when you
+need full rationale — e.g., when you're changing code affected by that decision.
+
+**For humans:** Scan the table when you need to remember what was decided.
+Click through to the ADR for full context.
+
+## Maintenance rules
+- Every ADR gets a row here with a meaningful Implication
+- Every `decision:` commit trailer gets a row here
+- If the Implication column doesn't save you from opening the ADR, rewrite it
+- If sources disagree, note it in the project's tracking documentation
