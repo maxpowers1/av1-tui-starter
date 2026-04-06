@@ -47,8 +47,10 @@ Decisions live in markdown ADR files (primary) with git trailers as audit trail
 - `/new-decision` — create an ADR + commit with decision trailers
 - `/audit-decisions` — cross-reference ADRs and decision log for gaps
 - `/qa` — run the QA agent (tests, types, lint, encoding safety, ADR compliance)
+- `/health` — check the framework itself (context budget, decision log quality, structural integrity)
 - `decision-reviewer` subagent — audits decision tracking for gaps
 - `qa` subagent — full QA sweep with structured report
+- `framework-health` subagent — framework maintenance audit
 
 ## Context Budget
 Keep this file under 100 lines. Extract details into `docs/` and reference them

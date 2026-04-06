@@ -37,6 +37,7 @@ These apply to any project using this agentic coding framework.
 | **Drift** | When documentation diverges from the actual implementation over time. A key risk for any decision-tracking system. |
 | **Context budget** | The finite amount of information that can be loaded into an agent's context window. The cache hierarchy exists to manage this budget efficiently. |
 | **Unrecorded decision** | A design choice made in code without a corresponding ADR. Treated as a QA finding in this framework — every non-trivial choice should be traceable. |
+| **Framework health** | A periodic audit of the framework itself — is CLAUDE.md under budget? Are decision log implications useful? Is HANDOFF.md stale? Are all framework files present and cross-referenced? Checked via `/health`. Distinct from `/qa` which checks application code. |
 | **Anti-pattern** | A documented misuse of the framework. Examples: duplicating data across cache layers, putting rationale in L0, reading all ADRs at session start. See `docs/CONTEXT_GUIDE.md`. |
 | **Audit trail** | The immutable record of when decisions were made and by whom. In this framework, git history serves as the audit trail (L4). |
 

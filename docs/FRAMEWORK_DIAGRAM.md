@@ -122,6 +122,7 @@ flowchart TB
         CMD_HANDOFF["/handoff — Write session handoff note"]
         CMD_DECISION["/new-decision — Create ADR + DECISION_LOG row"]
         CMD_QA["/qa — Full QA sweep"]
+        CMD_HEALTH["/health — Framework maintenance audit"]
         CMD_AUDIT["/audit-decisions — Cross-reference audit"]
     end
 
@@ -132,6 +133,9 @@ flowchart TB
         AGENT_DR["decision-reviewer agent (sonnet)
         Finds unrecorded decisions
         Checks ADR/log sync"]
+        AGENT_FH["framework-health agent (sonnet)
+        Context budget, log quality
+        Structural integrity"]
     end
 
     subgraph HOOKS["Git Hooks — Automatic"]
@@ -152,6 +156,10 @@ flowchart TB
     CMD_DECISION -->|creates| ADR_DIR
     CMD_DECISION -->|adds row| DECISION_LOG
     CMD_QA -->|invokes| AGENT_QA
+    CMD_HEALTH -->|invokes| AGENT_FH
+    AGENT_FH -->|reads| DECISION_LOG
+    AGENT_FH -->|reads| ADR_DIR
+    AGENT_FH -->|reads| HANDOFF_MD
     CMD_AUDIT -->|uses| AGENT_DR
     CMD_AUDIT -->|appends findings| EXPERIMENT
     AGENT_DR -->|reads| ADR_DIR
