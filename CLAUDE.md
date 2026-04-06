@@ -42,9 +42,10 @@ Decisions live in markdown ADR files (primary) with git trailers as audit trail
 - Pre-commit hook enforces ruff lint + format (setup: `git config core.hooksPath .githooks`)
 
 ## Available Agents and Commands
+- `/plan` — sketch an architecture plan before implementing (checks against existing ADRs)
 - `/handoff` — write a session handoff note before ending a session
 - `/new-decision` — create an ADR + commit with decision trailers
-- `/audit-decisions` — cross-reference ADRs, git trailers, and decision log
+- `/audit-decisions` — cross-reference ADRs and decision log for gaps
 - `/qa` — run the QA agent (tests, types, lint, encoding safety, ADR compliance)
 - `decision-reviewer` subagent — audits decision tracking for gaps
 - `qa` subagent — full QA sweep with structured report

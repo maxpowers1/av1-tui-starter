@@ -14,7 +14,10 @@ flowchart TD
     User prefs, cross-session learnings"]
     READ_MEMORY --> WORK{Work Loop}
 
-    WORK --> IMPLEMENT["Implement
+    WORK --> PLAN["/plan — Sketch approach,
+    check against existing ADRs,
+    identify decisions needed"]
+    PLAN --> IMPLEMENT["Implement
     Human + agent collaboration"]
     IMPLEMENT --> DECISION{"Made a
     non-trivial
@@ -43,6 +46,7 @@ flowchart TD
     Write HANDOFF.md for next session"]
     HANDOFF --> END([Session End])
 
+    style PLAN fill:#50b87a,stroke:#333,color:#000
     style HOOK fill:#e8a735,stroke:#333,color:#000
     style QA fill:#4a90d9,stroke:#333,color:#fff
     style NEW_DECISION fill:#50b87a,stroke:#333,color:#000
@@ -114,6 +118,7 @@ What each tool does and when it fires.
 ```mermaid
 flowchart TB
     subgraph COMMANDS["Slash Commands — User Invoked"]
+        CMD_PLAN["/plan — Architecture plan before implementing"]
         CMD_HANDOFF["/handoff — Write session handoff note"]
         CMD_DECISION["/new-decision — Create ADR + DECISION_LOG row"]
         CMD_QA["/qa — Full QA sweep"]
@@ -142,6 +147,7 @@ flowchart TB
         EXPERIMENT["docs/decisions/EXPERIMENT_NOTES.md"]
     end
 
+    CMD_PLAN -->|reads| DECISION_LOG
     CMD_HANDOFF -->|overwrites| HANDOFF_MD
     CMD_DECISION -->|creates| ADR_DIR
     CMD_DECISION -->|adds row| DECISION_LOG

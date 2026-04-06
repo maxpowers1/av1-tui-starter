@@ -28,7 +28,8 @@ These apply to any project using this agentic coding framework.
 | **Provenance** | A record of who or what made a decision. One of: `human` (human decided, agent transcribed), `claude-code` (agent decided, human approved), or `human+claude-code` (collaborative). Captured in ADR files and git trailers. |
 | **Implication** | A column in DECISION_LOG.md describing what a decision means for daily coding work. The key that lets agents skip reading the full ADR 80% of the time. |
 | **Git trailers** | Machine-parseable key-value metadata in git commit messages. Used as an audit trail for decisions. Example: `decision: Use Textual as TUI framework`. Queryable via `git log --grep`. |
-| **Slash command** | A user-invoked operation in Claude Code (e.g., `/qa`, `/new-decision`, `/handoff`). Defined in `.claude/commands/`. Runs in the current session's context. |
+| **Architecture plan** | A structured sketch of an approach created before implementation via `/plan`. Checks against existing ADRs, identifies files to touch, flags decisions that need recording, and estimates scope. Not persisted — lives in the session. |
+| **Slash command** | A user-invoked operation in Claude Code (e.g., `/plan`, `/qa`, `/new-decision`, `/handoff`). Defined in `.claude/commands/`. Runs in the current session's context. |
 | **Subagent** | A focused worker agent spun up by Claude Code to handle a specific task (e.g., QA checks, decision auditing). Defined in `.claude/agents/`. Runs in its own context with limited tools. |
 | **Pre-commit hook** | A script that runs automatically before every `git commit`. In this framework, it enforces fast lint and format checks. Lives in `.githooks/`. |
 | **Framework checks** | QA checks that are reusable across any project: tests pass, types check, lint clean, ADR compliance. Contrast with domain checks. |
